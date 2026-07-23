@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A Retro Love Story - An interactive birthday surprise journey built with love."
+    />
+    <title>MY BANGAARM'S BIRTHDAY 😘😘</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Homemade+Apple&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Three.js Background Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Ambient Vignette Overlay -->
+    <div class="vignette"></div>
+
+    <!-- Music Controller Widget -->
+    <div
+      class="music-controller-widget"
+      id="music-controller"
+      title="Toggle Background Music"
+    >
+      <div class="music-note-icon">
+        <!-- Inline SVG for Audio Note -->
+        <svg class="icon-music" viewBox="0 0 24 24" width="24" height="24">
+          <path
+            fill="currentColor"
+            d="M12,3V13.55A4,4 0 0,0 10,13A4,4 0 0,0 6,17A4,4 0 0,0 10,21A4,4 0 0,0 14,17V7H18V3H12Z"
+          />
+        </svg>
+        <div class="sound-wave">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+          <span class="bar bar-4"></span>
+        </div>
+      </div>
+      <span class="music-tooltip">Play Music</span>
+    </div>
+
+    <!-- Rain/Wind Ambient Sound Toggle Widget (Extra Emotional Feature) -->
+    <div
+      class="ambient-controller-widget"
+      id="ambient-controller"
+      title="Toggle Rain Ambience"
+    >
+      <svg class="icon-rain" viewBox="0 0 24 24" width="22" height="22">
+        <path
+          fill="currentColor"
+          d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12C20,14.65 18.7,17 16.66,18.42L15.25,17C16.94,15.82 18,14 18,12A6,6 0 0,0 12,6V4M12,8A4,4 0 0,1 16,12C16,13.25 15.43,14.37 14.54,15.11L13.11,13.68C13.66,13.31 14,12.7 14,12A2,2 0 0,0 12,10V8M12,12V14A2,2 0 0,0 10,16H8V18H10A4,4 0 0,0 14,14V12H12Z"
+          style="display: none"
+        />
+        <!-- Rain Cloud Icon -->
+        <path
+          fill="currentColor"
+          d="M19,15C19.83,15 20.5,14.33 20.5,13.5C20.5,12.67 19.83,12 19,12C18.82,12 18.66,12.03 18.5,12.08C18.16,10.27 16.58,9 14.7,9C13.57,9 12.57,9.47 11.87,10.22C11.16,9.47 10.15,9 9,9C7.2,9 5.7,10.38 5.54,12.14C5.39,12.05 5.2,12 5,12C4.17,12 3.5,12.67 3.5,13.5C3.5,14.33 4.17,15 5,15H19M7,17V21M10,17V23M13,17V21M16,17V23M19,17V21"
+        />
+      </svg>
+    </div>
+
+    <!-- Fullscreen Transition / Loader Screen -->
+    <div class="loader-overlay" id="loader-overlay">
+      <div class="loader-content">
+        <div class="heartbeat-container">
+          <!-- SVG Heart representing loader -->
+          <svg class="heart-loader" viewBox="0 0 32 29.6">
+            <path
+              d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+            c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
+            />
+          </svg>
+        </div>
+        <p class="loader-quote" id="loader-quote">
+          Preparing Something Special...
+        </p>
+
+        <!-- Progress Bar (Indicating loading like 100 percent) -->
+        <div class="loader-progress-container">
+          <div class="loader-progress-bar">
+            <div
+              class="loader-progress-fill"
+              id="loader-progress-fill"
+              style="width: 0%"
+            ></div>
+          </div>
+          <span
+            class="loader-progress-percentage"
+            id="loader-progress-percentage"
+            >0%</span
+          >
+        </div>
+
+        <div class="loader-particles"></div>
+      </div>
+    </div>
+
+    <!-- Main Website Container -->
+    <main id="main-container">
+      <!-- SECTION 1: Welcome Screen -->
+      <section class="story-section active" id="section-welcome">
+        <div class="glass-card welcome-card">
+          <h1 class="welcome-title text-glow">
+            Welcome To My World <span class="heart-bounce">❤️</span>
+          </h1>
+          <p class="welcome-subtitle">
+            This little world was created only for you.
+          </p>
+          <button class="btn-primary" id="btn-begin-journey">
+            <span>Begin Our Journey</span>
+            <svg viewBox="0 0 24 24" width="20" height="20" class="btn-arrow">
+              <path
+                fill="currentColor"
+                d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- SECTION 2: First Letter & Hanging Polaroid Gallery -->
+      <section class="story-section" id="section-letter1">
+        <div class="section-container layout-centered">
+          <!-- Center: The Vintage Paper Letter -->
+          <div class="letter-outer-wrapper">
+            <div class="vintage-paper letter-paper" id="paper-letter1">
+              <h2 class="letter-title" id="letter1-title"></h2>
+              <div class="letter-body" id="letter1-body"></div>
+              <p class="letter-signature" id="letter1-signature"></p>
+            </div>
+            <button class="btn-primary btn-next-section" id="btn-to-gallery">
+              <span>Continue Journey</span>
+              <svg viewBox="0 0 24 24" width="20" height="20" class="btn-arrow">
+                <path
+                  fill="currentColor"
+                  d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Retro Photo Gallery -->
+      <section class="story-section" id="section-gallery">
+        <div class="section-container layout-centered flex-column">
+          <h2 class="section-title text-glow">Our Polaroid Memories ❤️</h2>
+
+          <!-- Swipeable Polaroid Deck -->
+          <div class="gallery-swipe-container">
+            <div class="polaroid-deck" id="polaroid-deck">
+              <!-- Populated dynamically via js -->
+            </div>
+
+            <!-- Slide Counter -->
+            <div class="gallery-controls">
+              <span class="gallery-counter" id="gallery-counter">1 / 20</span>
+            </div>
+          </div>
+
+          <button
+            class="btn-primary btn-next-section"
+            id="btn-to-quiz"
+            style="margin-top: 2rem"
+          >
+            <span>Go to The Quiz</span>
+            <svg viewBox="0 0 24 24" width="20" height="20" class="btn-arrow">
+              <path
+                fill="currentColor"
+                d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- SECTION 4: The Quiz -->
+      <section class="story-section" id="section-quiz">
+        <div class="section-container layout-centered">
+          <div class="glass-card quiz-card">
+            <div class="quiz-header">
+              <span class="quiz-progress-label" id="quiz-progress-text"
+                >Question 1 of 10</span
+              >
+              <div class="quiz-progress-bar-outer">
+                <div
+                  class="quiz-progress-bar-inner"
+                  id="quiz-bar-fill"
+                  style="width: 10%"
+                ></div>
+              </div>
+            </div>
+
+            <div class="quiz-question-box">
+              <h3 class="quiz-question" id="quiz-question-text">
+                Do you remember the exact date of our first conversation?
+              </h3>
+              <p class="quiz-reaction" id="quiz-reaction-text"></p>
+            </div>
+
+            <div class="quiz-options">
+              <button class="btn-option btn-yes" id="btn-quiz-yes">
+                <span>Yes</span>
+                <span class="btn-option-glow"></span>
+              </button>
+              <button class="btn-option btn-no" id="btn-quiz-no">
+                <span>No</span>
+                <span class="btn-option-glow"></span>
+              </button>
+            </div>
+
+            <button
+              class="btn-primary btn-next-section hidden"
+              id="btn-quiz-next"
+              style="margin-top: 2rem"
+            >
+              <span>Next Question</span>
+              <svg viewBox="0 0 24 24" width="20" height="20" class="btn-arrow">
+                <path
+                  fill="currentColor"
+                  d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Secret Locker -->
+      <section class="story-section" id="section-locker">
+        <div class="section-container layout-centered">
+          <div class="glass-card locker-card">
+            <h2 class="locker-title text-glow">The Secret Locker</h2>
+            <p class="locker-subtitle">
+              This diary is sealed. Enter the secret code to read what is hidden
+              inside.
+            </p>
+
+            <div class="locker-lock-body" id="diary-locker-body">
+              <!-- Diary design / Combination lock input -->
+              <div class="locker-keyhole">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="48"
+                  height="48"
+                  class="icon-lock-closed"
+                  id="locker-svg-closed"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15C10,16.1 10.9,17 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"
+                  />
+                </svg>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="48"
+                  height="48"
+                  class="icon-lock-open hidden"
+                  id="locker-svg-open"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M18,8H17V6A5,5 0 0,0 12,1A5,5 0 0,0 7,6V8H6A2,2 0 0,0 4,10V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V10A2,2 0 0,0 18,8M12,17A2,2 0 0,1 10,15A2,2 0 0,1 12,13A2,2 0 0,1 14,15A2,2 0 0,1 12,17M9,8V6A3,3 0 0,1 12,3A3,3 0 0,1 15,6V8H9Z"
+                  />
+                </svg>
+              </div>
+
+              <!-- Custom Combination Dial Input -->
+              <div class="combination-dial-wrapper">
+                <input
+                  type="password"
+                  maxlength="10"
+                  placeholder="••••"
+                  class="locker-input"
+                  id="locker-password-input"
+                  autocomplete="off"
+                  readonly
+                />
+              </div>
+
+              <!-- Locker Code keypad layout -->
+              <div class="locker-keypad">
+                <button class="keypad-btn" data-val="1">1</button>
+                <button class="keypad-btn" data-val="2">2</button>
+                <button class="keypad-btn" data-val="3">3</button>
+                <button class="keypad-btn" data-val="4">4</button>
+                <button class="keypad-btn" data-val="5">5</button>
+                <button class="keypad-btn" data-val="6">6</button>
+                <button class="keypad-btn" data-val="7">7</button>
+                <button class="keypad-btn" data-val="8">8</button>
+                <button class="keypad-btn" data-val="9">9</button>
+                <button
+                  class="keypad-btn keypad-clear"
+                  id="btn-locker-clear"
+                  data-val="C"
+                >
+                  C
+                </button>
+                <button class="keypad-btn" data-val="0">0</button>
+                <button
+                  class="keypad-btn keypad-enter"
+                  id="btn-locker-enter"
+                  data-val="OK"
+                >
+                  OK
+                </button>
+              </div>
+
+              <p class="locker-hint-text" id="locker-hint-display">Hint: ...</p>
+              <p class="locker-error-text" id="locker-error-display"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: Second Letter & "Open When..." Shelf -->
+      <section class="story-section" id="section-letter2">
+        <div class="section-container layout-centered flex-column">
+          <!-- The Unfolding Vintage Letter -->
+          <div class="letter-outer-wrapper scroll-wrapper">
+            <div
+              class="vintage-paper letter-paper unfold-initial"
+              id="paper-letter2"
+            >
+              <h2 class="letter-title" id="letter2-title"></h2>
+              <div class="letter-body" id="letter2-body"></div>
+              <p class="letter-signature" id="letter2-signature"></p>
+            </div>
+          </div>
+
+          <!-- Shelf containing Open When mini-envelopes -->
+          <div class="envelopes-shelf-wrapper">
+            <h3 class="shelf-title text-glow">"Open When..." Envelopes</h3>
+            <div class="envelopes-shelf">
+              <!-- Envelope 1 -->
+              <div class="envelope-item" data-index="0">
+                <div class="envelope-back">
+                  <div class="envelope-content">
+                    <h4 class="envelope-note-title">A Hug in Words</h4>
+                    <p class="envelope-note-text">
+                      Hey there, close your eyes...
+                    </p>
+                  </div>
+                  <div class="envelope-flap"></div>
+                  <div class="envelope-front">
+                    <span class="envelope-label">Open when you're sad</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Envelope 2 -->
+              <div class="envelope-item" data-index="1">
+                <div class="envelope-back">
+                  <div class="envelope-content">
+                    <h4 class="envelope-note-title">Close Your Eyes</h4>
+                    <p class="envelope-note-text">
+                      Distance is just a number...
+                    </p>
+                  </div>
+                  <div class="envelope-flap"></div>
+                  <div class="envelope-front">
+                    <span class="envelope-label">Open when you miss me</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Envelope 3 -->
+              <div class="envelope-item" data-index="2">
+                <div class="envelope-back">
+                  <div class="envelope-content">
+                    <h4 class="envelope-note-title">Keep it Glowing</h4>
+                    <p class="envelope-note-text">
+                      Your smile is contagious...
+                    </p>
+                  </div>
+                  <div class="envelope-flap"></div>
+                  <div class="envelope-front">
+                    <span class="envelope-label">Open when you smile</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal overlay for envelope letter view -->
+          <div class="envelope-modal hidden" id="envelope-modal">
+            <div class="vintage-paper envelope-modal-content">
+              <button class="modal-close-btn" id="btn-close-envelope-modal">
+                &times;
+              </button>
+              <h3 class="letter-title" id="envelope-modal-title">Open When</h3>
+              <div class="letter-body" id="envelope-modal-body">
+                Letter goes here...
+              </div>
+              <p class="letter-signature">With all my heart ❤️</p>
+            </div>
+          </div>
+
+          <button class="btn-primary btn-next-section" id="btn-to-specialq">
+            <span>Continue...</span>
+            <svg viewBox="0 0 24 24" width="20" height="20" class="btn-arrow">
+              <path
+                fill="currentColor"
+                d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- SECTION 9: Special Question -->
+      <section class="story-section" id="section-specialq">
+        <div class="section-container layout-centered">
+          <div class="glass-card special-question-card" id="special-q-card">
+            <h2 class="special-title text-glow">
+              Nu Naatho Happy Gane Unnavaa? ❤️
+            </h2>
+            <p class="special-subtitle">
+              A simple question, but it means everything to me.
+            </p>
+
+            <div class="special-actions" id="special-actions-box">
+              <!-- Buttons swap text and classes on click -->
+              <button class="btn-special btn-yes-label" id="btn-special-yes">
+                <span>YES</span>
+              </button>
+              <button class="btn-special btn-no-label" id="btn-special-no">
+                <span>NO</span>
+              </button>
+            </div>
+
+            <p class="special-attempts-msg" id="special-attempts-display"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL SECTION: Birthday Wishes & Cinematic Final Screen -->
+      <section class="story-section" id="section-birthday">
+        <div class="section-container layout-centered flex-column">
+          <!-- Birthday wishes scroll box / cards -->
+          <div class="wishes-display-wrapper">
+            <div class="wishes-cinematic-box" id="wishes-container">
+              <!-- Cinematic typing statements populated via js -->
+            </div>
+          </div>
+
+          <!-- interactive digital birthday cake illustration -->
+          <div class="birthday-cake-container" id="cake-interactive">
+            <div class="cake-candle">
+              <div class="flame" id="cake-flame"></div>
+            </div>
+            <div class="cake-top"></div>
+            <div class="cake-middle"></div>
+            <div class="cake-bottom"></div>
+            <p class="cake-instruction" id="cake-instruction">
+              Click the candle to blow out the flame and make a wish!
+            </p>
+          </div>
+
+          <!-- Heart Rain trigger & Final Credits -->
+          <div class="final-credits glass-card hidden" id="final-credits-box">
+            <h3 class="final-credits-title">Thank You For Existing ❤️</h3>
+            <p class="final-credits-text">
+              Every single day is brighter and more beautiful because you are in
+              it.
+            </p>
+            <div class="final-tag">Made with Endless Love ❤️</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Sticky Compliments overlay -->
+    <div class="sticky-notes-container" id="sticky-notes-container"></div>
+
+    <!-- CDN scripts -->
+    <!-- GSAP (GreenSock) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Three.js (WebGL particles background) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Canvas Confetti for locker unlock and birthday fireworks -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Application source files -->
+    <script src="config.js"></script>
+    <script src="letters/letter1.js"></script>
+    <script src="letters/letter2.js"></script>
+    <script src="data/questions.js"></script>
+    <script src="locker/password.js"></script>
+    <script src="locker/hint.js"></script>
+
+    <script src="js/animations.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
