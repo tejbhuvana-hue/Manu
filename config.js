@@ -106,7 +106,7 @@ const SITE_CONFIG = {
     "Happy Birthday Once Again ❤️",
   ],
 
-  // 5. Swipeable Retro Photo Gallery (20 Photos)
+  // 5. Swipeable Retro Photo Gallery (14 Photos)
   gallery: [
     { image: "images/gallery/photo1.jpeg", caption: "Your beautiful smile... 🥰" },
     { image: "images/gallery/photo2.jpeg", caption: "The beginning of us... 💘" },
@@ -116,18 +116,12 @@ const SITE_CONFIG = {
     { image: "images/gallery/photo6.jpeg", caption: "When time stood still... ⏳" },
     { image: "images/gallery/photo7.jpeg", caption: "Your laugh, my favorite melody... 🎵" },
     { image: "images/gallery/photo8.png",  caption: "A dream come true... 🌟" },
-    { image: "images/gallery/photo1.jpeg", caption: "Stargazing with you... 🌌" },
-    { image: "images/gallery/photo2.jpeg", caption: "A cozy rainy evening... 🌧️" },
-    { image: "images/gallery/photo3.jpeg", caption: "That sparkle in your eyes... ✨" },
-    { image: "images/gallery/photo4.jpeg", caption: "A little note of love... 📝" },
-    { image: "images/gallery/photo5.jpeg", caption: "Walking down memory lane... 🚶‍♂️" },
-    { image: "images/gallery/photo6.jpeg", caption: "My favorite picture of you... 😘" },
-    { image: "images/gallery/photo7.jpeg", caption: "Every moment with you is magic... 🪄" },
-    { image: "images/gallery/photo8.png",  caption: "Forever and always... 🔒" },
-    { image: "images/gallery/photo1.jpeg", caption: "The warmth of your love... 🔥" },
-    { image: "images/gallery/photo2.jpeg", caption: "Shared laughs and sweet thoughts... 🍯" },
-    { image: "images/gallery/photo3.jpeg", caption: "Cheering for you, always... 📣" },
-    { image: "images/gallery/photo4.jpeg", caption: "To many more memories together... 🥂" }
+    { image: "images/gallery/WhatsApp Image 2026-07-23 at 9.55.06 PM.jpeg", caption: "Sweetest memory together... ❤️" },
+    { image: "images/gallery/WhatsApp Image 2026-07-23 at 9.55.06 PM (1).jpeg", caption: "My happiness... 🌸" },
+    { image: "images/gallery/WhatsApp Image 2026-07-23 at 9.55.07 PM.jpeg", caption: "Precious moments... 💎" },
+    { image: "images/gallery/WhatsApp Image 2026-07-23 at 9.55.07 PM (1).jpeg", caption: "Love you bangaaram... 😘" },
+    { image: "images/gallery/WhatsApp Image 2026-07-23 at 9.55.07 PM (2).jpeg", caption: "Forever in my heart... 🔐" },
+    { image: "images/gallery/WhatsApp Image 2026-07-23 at 9.55.32 PM.jpeg", caption: "Together always & forever... 🥂" }
   ],
 };
 

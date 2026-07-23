@@ -361,6 +361,29 @@ const LoveAnimations = {
     element.innerHTML = '';
     
     let index = 0;
+    let isCompleted = false;
+    const paperParent = element.closest('.vintage-paper') || element;
+
+    const autoScroll = () => {
+      element.scrollTop = element.scrollHeight;
+    };
+
+    const finishText = () => {
+      if (isCompleted) return;
+      isCompleted = true;
+      clearInterval(interval);
+      paperParent.removeEventListener('click', clickHandler);
+      element.innerHTML = text.replace(/\n/g, '<br>');
+      autoScroll();
+      if (callback) callback();
+    };
+
+    const clickHandler = () => {
+      finishText();
+    };
+
+    paperParent.addEventListener('click', clickHandler);
+
     const interval = setInterval(() => {
       if (index < text.length) {
         // Handles newlines correctly
@@ -371,14 +394,10 @@ const LoveAnimations = {
         }
         index++;
         
-        // Auto scroll parent containers if they have scrollbars
-        const scrollParent = element.closest('.scroll-wrapper');
-        if (scrollParent) {
-          scrollParent.scrollTop = scrollParent.scrollHeight;
-        }
+        // Auto scroll inside the letter-body element
+        autoScroll();
       } else {
-        clearInterval(interval);
-        if (callback) callback();
+        finishText();
       }
     }, speed);
     

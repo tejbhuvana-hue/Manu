@@ -275,14 +275,21 @@ const SectionController = {
         const body1 = document.getElementById('letter1-body');
         const title1 = document.getElementById('letter1-title');
         const sig1 = document.getElementById('letter1-signature');
+        const btnToGallery = document.getElementById('btn-to-gallery');
         
         // Hide content first
         body1.style.opacity = '0';
         title1.style.opacity = '0';
         sig1.style.opacity = '0';
+        if (btnToGallery) {
+          gsap.killTweensOf(btnToGallery);
+          btnToGallery.style.opacity = '0';
+          btnToGallery.style.visibility = 'hidden';
+          btnToGallery.style.pointerEvents = 'none';
+        }
         
         window.LoveAnimations.unfoldPaper(paper1, () => {
-          // Show title, type body, then show signature
+          // Show title, type body, then show signature and Continue button
           title1.textContent = window.letter1.title;
           gsap.to(title1, { opacity: 1, duration: 0.6 });
           
@@ -291,12 +298,29 @@ const SectionController = {
             window.LoveAnimations.typeText(body1, window.letter1.body, 35, () => {
               sig1.textContent = window.letter1.signature;
               gsap.fromTo(sig1, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.8 });
+              
+              if (btnToGallery) {
+                btnToGallery.style.visibility = 'visible';
+                btnToGallery.style.pointerEvents = 'auto';
+                gsap.fromTo(btnToGallery, 
+                  { opacity: 0, y: 15 },
+                  { opacity: 1, y: 0, duration: 0.8, delay: 0.2 }
+                );
+              }
             });
           }, 600);
         });
         break;
 
       case 'section-gallery':
+        // Hide quiz button initially until all polaroids are completed
+        const btnToQuizSec = document.getElementById('btn-to-quiz');
+        if (btnToQuizSec) {
+          gsap.killTweensOf(btnToQuizSec);
+          btnToQuizSec.style.opacity = '0';
+          btnToQuizSec.style.visibility = 'hidden';
+          btnToQuizSec.style.pointerEvents = 'none';
+        }
         // Initialize Gallery
         GalleryEngine.init();
         break;
@@ -317,10 +341,17 @@ const SectionController = {
         const body2 = document.getElementById('letter2-body');
         const title2 = document.getElementById('letter2-title');
         const sig2 = document.getElementById('letter2-signature');
+        const btnToSpecialq = document.getElementById('btn-to-specialq');
         
         body2.style.opacity = '0';
         title2.style.opacity = '0';
         sig2.style.opacity = '0';
+        if (btnToSpecialq) {
+          gsap.killTweensOf(btnToSpecialq);
+          btnToSpecialq.style.opacity = '0';
+          btnToSpecialq.style.visibility = 'hidden';
+          btnToSpecialq.style.pointerEvents = 'none';
+        }
         
         window.LoveAnimations.unfoldPaper(paper2, () => {
           title2.textContent = window.letter2.title;
@@ -331,6 +362,15 @@ const SectionController = {
             window.LoveAnimations.typeText(body2, window.letter2.body, 35, () => {
               sig2.textContent = window.letter2.signature;
               gsap.fromTo(sig2, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.8 });
+              
+              if (btnToSpecialq) {
+                btnToSpecialq.style.visibility = 'visible';
+                btnToSpecialq.style.pointerEvents = 'auto';
+                gsap.fromTo(btnToSpecialq, 
+                  { opacity: 0, y: 15 },
+                  { opacity: 1, y: 0, duration: 0.8, delay: 0.2 }
+                );
+              }
             });
           }, 600);
         });
@@ -443,13 +483,42 @@ const GalleryEngine = {
       }
     });
 
-    if (this.counterEl) {
-      this.counterEl.textContent = `${this.currentIdx + 1} / ${this.photos.length}`;
+    const btnToQuiz = document.getElementById('btn-to-quiz');
+
+    if (this.currentIdx < this.photos.length) {
+      if (this.deckEl) {
+        this.deckEl.style.display = 'block';
+      }
+      if (this.counterEl) {
+        this.counterEl.textContent = `${this.currentIdx + 1} / ${this.photos.length}`;
+      }
+      if (btnToQuiz) {
+        gsap.killTweensOf(btnToQuiz);
+        btnToQuiz.style.opacity = '0';
+        btnToQuiz.style.visibility = 'hidden';
+        btnToQuiz.style.pointerEvents = 'none';
+      }
+    } else {
+      // All photos swiped & completed! Hide empty deck and reveal button centered
+      if (this.counterEl) {
+        this.counterEl.textContent = `All Memories Unlocked! ❤️`;
+      }
+      if (this.deckEl) {
+        this.deckEl.style.display = 'none';
+      }
+      if (btnToQuiz) {
+        btnToQuiz.style.visibility = 'visible';
+        btnToQuiz.style.pointerEvents = 'auto';
+        gsap.fromTo(btnToQuiz,
+          { opacity: 0, scale: 0.7, y: 15 },
+          { opacity: 1, scale: 1.1, y: 0, duration: 0.8, ease: 'back.out(1.7)' }
+        );
+      }
     }
   },
 
   next() {
-    if (this.isAnimating || this.currentIdx >= this.photos.length - 1) return;
+    if (this.isAnimating || this.currentIdx >= this.photos.length) return;
     this.isAnimating = true;
 
     const topCard = this.cards[this.currentIdx];

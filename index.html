@@ -158,31 +158,30 @@
         <div class="section-container layout-centered flex-column">
           <h2 class="section-title text-glow">Our Polaroid Memories ❤️</h2>
 
+          <!-- Slide Counter -->
+          <div class="gallery-controls" style="margin-bottom: 1.5rem">
+            <span class="gallery-counter" id="gallery-counter">1 / 14</span>
+          </div>
+
           <!-- Swipeable Polaroid Deck -->
           <div class="gallery-swipe-container">
             <div class="polaroid-deck" id="polaroid-deck">
               <!-- Populated dynamically via js -->
             </div>
 
-            <!-- Slide Counter -->
-            <div class="gallery-controls">
-              <span class="gallery-counter" id="gallery-counter">1 / 20</span>
-            </div>
+            <button
+              class="btn-primary btn-next-section"
+              id="btn-to-quiz"
+            >
+              <span>Go to The Quiz</span>
+              <svg viewBox="0 0 24 24" width="24" height="24" class="btn-arrow">
+                <path
+                  fill="currentColor"
+                  d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+                />
+              </svg>
+            </button>
           </div>
-
-          <button
-            class="btn-primary btn-next-section"
-            id="btn-to-quiz"
-            style="margin-top: 2rem"
-          >
-            <span>Go to The Quiz</span>
-            <svg viewBox="0 0 24 24" width="20" height="20" class="btn-arrow">
-              <path
-                fill="currentColor"
-                d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
-              />
-            </svg>
-          </button>
         </div>
       </section>
 
@@ -329,7 +328,7 @@
       <section class="story-section" id="section-letter2">
         <div class="section-container layout-centered flex-column">
           <!-- The Unfolding Vintage Letter -->
-          <div class="letter-outer-wrapper scroll-wrapper">
+          <div class="letter-outer-wrapper">
             <div
               class="vintage-paper letter-paper unfold-initial"
               id="paper-letter2"
