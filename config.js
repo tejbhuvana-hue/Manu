@@ -71,27 +71,6 @@ const SITE_CONFIG = {
     },
   ],
 
-  // 3. Memory Jar messages (randomized on click)
-  memoryJarMessages: [
-    "You are the sunshine on my rainiest days. ☀️",
-    "I still get butterflies thinking about our first conversation. 🦋",
-    "Your laugh is, and always will be, my favorite song. 🎵",
-    "Thank you for being my safe haven and my happiest thought. 🏡",
-    "You make even the most ordinary moments feel like magic. ✨",
-    "No matter how busy life gets, you are always my favorite pause. ☕",
-    "You have the kindest heart I've ever known. ❤️",
-    "If I could write a story of my life, you'd be my favorite chapter. 📖",
-  ],
-
-  // 4. Floating handwritten sticky notes compliments
-  compliments: [
-    "You are beautiful inside and out ✨",
-    "Your kindness is a superpower 🌸",
-    "I love the way you think 🧠",
-    "You make my world so bright ☀️",
-    "You are my favorite distraction 💭",
-    "Your voice feels like home 🏡",
-  ],
 
   // Final Birthday Wishes Sequence
   birthdayWishes: [

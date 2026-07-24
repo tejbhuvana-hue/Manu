@@ -5,54 +5,55 @@
 
 const quizQuestions = [
   {
-    q: "Do you remember the exact date of our first conversation?",
-    yesResponse: "Aww, you remembered! My heart skipped a beat. ❤️",
-    noResponse: "Aha! Don't worry, I have it saved in my heart (and the timeline ahead!) 😉"
+    q: "bangaaram nuv nijam gane naatho happy ga vunnava ?",
+    yesResponse: "Aww, you happy with mee...! life long elane happy ga chooskonta bangaaramm. 😘",
+    noResponse: "Aha! sorry bangaaram ninnu emaina ebandhi pettinte bada pettinte inkoka saari repeat cheyyanu 🥹"
   },
   {
-    q: "Did you know that you look absolutely adorable when you smile?",
-    yesResponse: "I knew it! Keep smiling, it lights up my entire world. ✨",
-    noResponse: "Well, now you know! Trust me, it is the most beautiful sight. 😊"
+    q: "mana first conversation gurthundha bangaaram neeki ?",
+    yesResponse: " awww bangaaram first conversaion gurthunda neeeki 😘😘",
+    noResponse: "oyee bangaaram mana first conversation 7 december 2025 night 7 30 ki start ayyindhi . 😊"
   },
   {
-    q: "Do you agree that our late-night talks are the absolute best?",
-    yesResponse: "They truly are. I could talk to you until the sun comes up. 🌅",
-    noResponse: "Wait, really? I guess I need to make our daytime talks even better! 💬"
+    q: "bangaaram nijam cheppu neeku na correct ye naa...?",
+    yesResponse: "love you ney bangaaram nuv correct ani chepina wrong ani cheppina ee life ki nuvve na pellam nene nee mogudu adhi matram fix...😘💘",
+    noResponse: "no aaah  ?😣 nenu neeki correct kadhu aa.,,?nene neek correct mimmu nen thappa inka evaru barinchaleru..nen neeku correct kadu annav ante champuthaa...."
   },
   {
-    q: "If I bought you a jar of sweet memories, would you keep it forever?",
-    yesResponse: "Me too! It's filled with every little laugh we've shared. 🍯",
-    noResponse: "Aw, I will just keep it safe for both of us then. 📦"
+    q: "Bangaaram neeku eppudaina ela anipichinda veedini endhuku love chesanu ra ani?",
+    yesResponse: "sorry bangaaram,😣😣neeku ala anipinchindhi ante nen correct ga lenu ani artam ...sorry bangaaram neeki inka ela vundalo cheppu bangaaram alane vuntaa...",
+    noResponse: "Aw, abdam cheppadhu bangaaram...anipichunte yes ani cheppu..... anipinchundadu anukontunna .... "
   },
   {
-    q: "Did you know that my favorite notification is your name on my screen?",
-    yesResponse: "It really is. My screen lights up, and so does my day. 📱",
-    noResponse: "It's true! Every time you text, a small smile appears on my face. 🥰"
+    q: "Bangaaram na daggara debbalu thinedhi neeku istamaa....?",
+    yesResponse: "ayyu na bangaaram ye....🥰🥰ninnu premaga kottadam ante naaki istame ney bangaaramm...",
+    noResponse: "sorry bangaaram inka eppudu kottanu ye.. ani cheptha anukovadhu ninnu koduthune vunta ante serious ga kadu premaga.."
   },
   {
-    q: "Do you believe that we were somehow destined to meet?",
-    yesResponse: "Absolutely. Out of all the stars in the sky, ours aligned. 🌟",
-    noResponse: "Destiny or luck, I am just incredibly grateful you are here. 🍀"
+    q: "bangaaram nuv nannu nijam gane love chesthunnavaa...?",
+    yesResponse: "naa bangaara meeyyy...nuv nanni nijam gane love chesthunnav ley bangaarammm...😘😘",
+    noResponse: "oseyyy ninnu champutha ela annav anukoo...."
   },
   {
-    q: "Do you know that your laugh is my absolute favorite sound?",
-    yesResponse: "It's like music to my ears. Play it on repeat! 🎵",
-    noResponse: "It really is! Let's make sure you laugh a lot today. 😄"
+    q: "Bangaaram nuv naatho full close avvaledhu kadaa...?",
+    yesResponse: "Artam avutha vundhi bangaaram nuv naatho inka full close kaledhu ...ne bayam kooda correct ye ley....🥺",
+    noResponse: "Nijam cheppave nuv naato full close ga levu naakii thelusthusthundhii..🥺."
   },
   {
-    q: "If I baked you a birthday cake, would you eat the first bite?",
-    yesResponse: "Yum! Only if we share it together. 🎂",
-    noResponse: "Hey! More cake for me, but I'll still feed you a piece. 🍰"
+    q: "nee bangaarm ki nuvvu ante entha istam oo thelsaa...?",
+    yesResponse: "ohhh! neeki thelisindedhi 100%lo 4% inka thakkuvve anuko nijam cheppali ante vadiki nee paina entha prema vundo nuv kanuko levu endhukante roju rojuki vadiki ne paina prema peruguthune vuntundhiii...",
+    noResponse: "Hey! naa premanu nen asalu matalalo cheppalenu nuv na remanu choosindedhi just 4% anthe 100% lo....mundhu mundhu choosthav leyy..."
+  },
+  
+  {
+    q: "bangaaram nee valla nenu bada paduthunna ani feel avuthunnava...?",
+    yesResponse: "osey pandhi neeku enni sarlu cheppanu ye nuvvu nanni eppudu bada oettaledhu ani mistakes anevi andaru chestharu alane nuv kooda chesindav anthe malli ade mistake repeat cheyyakunda vunte chaalu ",
+    noResponse: "nuv alane feel avuthunnav bangaaram naaki thelsu nee valla nen eppudu bada padaledhu bangaaram nee vallane nen happy ga vundedhi ....😘😘😘"
   },
   {
-    q: "Did you think this surprise would lead to a secret locker?",
-    yesResponse: "Smart! Let's see if you can crack the combination. 🔓",
-    noResponse: "Surprise! A digital vault is waiting for your key. 🔐"
-  },
-  {
-    q: "Are you ready to see what is hidden inside that locker?",
-    yesResponse: "Let's go! Put on your thinking cap. 🧠",
-    noResponse: "Too late to turn back now! The mystery awaits... 🕵️‍♀️"
+    q: "Bangaaram mana relationship ki happy ending ye vuntundhaa...?",
+    yesResponse: "BANGAAARAm mana relation shipki happy ending ye vuntundhi nuv strong ga vuntee...",
+    noResponse: "neeki anipinchadam ledhu ante inka jaragadhu bangaaram mana relationship ki happy ending vundadhuu.."
   }
 ];
 
